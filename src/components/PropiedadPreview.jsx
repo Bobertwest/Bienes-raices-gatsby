@@ -2,6 +2,8 @@ import React from "react"
 import Iconos from "./Iconos"
 import styled from "@emotion/styled"
 import Imagen from "gatsby-image"
+import { Link } from "gatsby"
+import urlSlug from "url-slug"
 
 const Card = styled.div`
   border: 1px solid #e1e1e1;
@@ -23,16 +25,22 @@ const Contenido = styled.div`
   }
 `
 
+const Boton = styled(Link)`
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #75ab00;
+  width: 100%;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+`
+
 const PropiedadPreview = ({ propiedad }) => {
-  const {
-    nombre,
-    descripcion,
-    habitaciones,
-    wc,
-    precio,
-    estacionamientos,
-    imagen,
-  } = propiedad
+  const { nombre, habitaciones, wc, precio, estacionamientos, imagen } =
+    propiedad
 
   return (
     <Card>
@@ -45,6 +53,7 @@ const PropiedadPreview = ({ propiedad }) => {
           estacionamientos={estacionamientos}
           habitaciones={habitaciones}
         />
+        <Boton to={`/${urlSlug(nombre)}`}>Visitar propiedad</Boton>
       </Contenido>
     </Card>
   )
